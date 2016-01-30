@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <title>京盛线上美术馆</title>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+  <meta name="description" content="博物馆" />
+  <meta name="author" content="goen88<goen88@163.com>" />
+  <!--meta name="viewport" content="width=device-width,target-densitydpi=high-dpi,initial-scale=1.0, minimum-scale=1.0, maximum-scale=5.0,user-scalable=yes"/-->
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta id="viewport" name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0">
+  <link rel="shortcut icon" href="/favicon.ico" />
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+  <link rel="stylesheet" type="text/css" href="css/global.css?1289df903dddd43434222" />
+  <script type="text/javascript" language="JavaScript" src="js/html5.js"></script>
+  <script type="text/javascript" language="JavaScript" src="js/jquery-1.11.3.min.js"></script>
+  <script type="text/javascript" language="JavaScript" src="js/data.js?944342222"></script>
+  <script src="js/jquery.touchSwipe.min.js"></script>
+  <script type="text/javascript" language="JavaScript" src="js/main.js?1231413d34d4223e4r422"></script>
+  <script type="text/javascript" charset="utf-8" src="js/zepto.js"></script>
+  <script type="text/javascript" charset="utf-8" src="js/weixin.js"></script>
+</head>
+<body >
+
+<div id="loading">
+	<div class="processing">0%</div>
+</div>
+     
+
+<!--audio plugin-->
+<audio id="bg-audio" src="./source/bg_128.mp3" autoplay="false" state="0" style="display:none"></audio>
+
+<!--声音按钮-->
+<a href="javascript:;" class="audio-btn audio-btn-white-close  " style="width:30px; height:30px;" ></a>
+
+<!--返回按钮-->
+<a href="javascript:;" class="return-btn button"></a>
+
+<div class="textShadow">
+	<a href="javascript:;" class="close" ></a>
+    <div class="bar"></div>
+	<div class="content">
+        <h3>视觉中国 瓷上敦煌 中国陶瓷艺术展</h3>
+        <p class="subTitle">展览前言</p>
+
+<p>“瓷上艺术”历史悠久，为人类文明和艺术作出了独特的贡献，瓷上艺术品也成为世界上最广泛存在且不可或缺的艺术形式之一。今天的中国艺术和思想的多样性再次在“瓷上艺术”中焕发出了旺盛的生命力，是次展览就是重要成果之一。事实上，瓷上艺术已经成长为中国当今最活跃的艺术门类之一</p>
+
+<p>此次展览，选取了一系列概括了多种风格及技巧的作品，使观众在视觉上能够领悟作品所带来概念上的冲击及了解所提出的观点：中国文明的核心价值是什么？作品从当下中国人的代表性角度阐述了这个论题，亦成为对当下中国文化现状的评注和记录。因此，是次展览不是多位艺术家的作品辑录，而是一次评注式的概览</p>
+
+<p>展览分“过去、现在、未来”三个展厅，您将在其中欣赏到93名中国瓷上艺术家创作的135套（1353件）作品。而促使这些作品产生的其中一项成功要素，是不囿于对传统瓷上艺术的钟爱，以触及中国文化价值核心的命题；另一项则是艺术家与策展人及展览工作人员历时两年之久的通力合作</p>
+<p>
+能在卢浮宫卡鲁塞尔厅举办是次展览，我们感到十分自豪。</p>
+<p>此外，谨此多谢王文胜先生的鼎力支持及鼓励，促使展览得以顺利完成，并为中国瓷上艺术与世界文明的交流打下基础。我们亦热切希望法国的观众在欣赏和解读之余，能够分享我们在策划过程中的喜悦</p>
+
+    </div>
+</div>
+
+<div  id="wrap">
+    
+</div>
+<div class="baner3-brushwood"></div>
+<div class="scene5-cloud"></div>
+
+<script type="text/javascript">
+var _time_num = 0;
+var _time_interval = undefined;
+jQuery(document).ready(function() {
+	
+	// 微信分享
+	var option_wx = {};
+	if($('#r-wx-title').val()!='') option_wx.title = $('#r-wx-title').val();
+	if($('#r-wx-img').val()!='') option_wx.img = $('#r-wx-img').val();
+	if($('#r-wx-con').val()!='') option_wx.con = $('#r-wx-con').val();
+	if( RegExp("MicroMessenger").test(navigator.userAgent) ){
+		//alert(option_wx)
+		$(document.body).wx(option_wx);
+	}
+});
+
+function dealPrecess(){
+	_time_interval = window.setInterval(function(){
+		_time_num = _time_num+1;
+		$('#loading .processing').html(_time_num+"%");
+		if(_time_num>=98)window.clearInterval(_time_interval);
+	},30);
+}
+var interval = undefined; 
+window.onload = function(){
+	dealPrecess();
+	window.setTimeout(function(){
+		interval = window.setInterval(checkVideoState,1000);
+	},3000)
+}
+function checkVideoState(){
+	if(_AUDIO.readyState>=2){
+		$('#loading .processing').html("100%");
+		window.setTimeout(function(){
+			layerMove();
+			$('#loading').hide();
+			window.clearInterval(interval);
+		},1000)
+	}
+}
+</script>
+
+
+<!-- 资源传递 -->
+<!-- 模版ID --><input id="activity_id" type="hidden" value='3464' />	
+<!-- 微信分享信息 --><input id="r-wx-title" type="hidden" value="京盛线上美术馆闪耀开幕" />
+<!-- 微信分享信息 -->
+<input id="r-wx-img"   type="hidden" value="http://js-museum.ggmm0208.com/images/baner1/museum.png" />
+<!-- 微信分享信息 --><input id="r-wx-con"   type="hidden" value="京盛线上美术馆闪耀开幕,全新体验，等你来观" />
+<!-- 资源传递 end-->
+
+</body>
+</html>
